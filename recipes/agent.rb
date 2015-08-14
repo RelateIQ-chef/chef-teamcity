@@ -1,3 +1,5 @@
+include_recipe 'teamcity::default' 
+ 
 template "init.agent" do
   path "/etc/init.d/teamcity-agent"
   mode 0755
