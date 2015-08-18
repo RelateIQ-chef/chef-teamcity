@@ -1,4 +1,16 @@
+chef_gem "chef-rewind"
+require 'chef/rewind' 
+
 include_recipe 'teamcity::default' 
+
+
+rewind :execute => 'extract-teamcity' do
+  command "tar --owner=#{node[:teamcity][:user]} --strip-components=1 -xvf #{node[:teamcity][:download_path]}/#{node[:teamcity][:file_name]}"
+  cwd node[:teamcity][:install_path]
+  creates "#{node[:teamcity][:install_path]}/conf"
+  notifies :run, 'execute[change_teamcity_owner]'
+end
+
  
 template "init.agent" do
   path "/etc/init.d/teamcity-agent"
