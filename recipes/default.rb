@@ -4,6 +4,7 @@ user node[:teamcity][:user] do
   home node[:teamcity][:user_home]
   shell '/bin/bash'
   supports manage_home: true
+  system true
 end
 
 directory "#{node[:teamcity][:user_home]}/.ssh" do
