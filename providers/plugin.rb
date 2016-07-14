@@ -10,10 +10,15 @@ action :install do
     owner node[:teamcity][:user]
   end
 
-  path = "#{plugins_dir}/#{::File.basename(new_resource.url)}"
 
-  unless ::File.exist?(path)
-    remote_file path do
+  if new_resource.local_file_name.to_s == ''
+    local_file_path = "#{plugins_dir}/#{::File.basename(new_resource.url)}"
+  else
+    local_file_path = "#{plugins_dir}/#{new_resource.local_file_name}"
+  end
+
+  unless ::File.exist?(local_file_path)
+    remote_file local_file_path do
       source new_resource.url
       owner node[:teamcity][:user]
       action :create_if_missing
