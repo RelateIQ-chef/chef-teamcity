@@ -153,7 +153,7 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    rack (1.5.2)
+    rack (2.2.3)
     rainbow (2.0.0)
     rake (10.1.1)
     rbzip2 (0.2.0)
